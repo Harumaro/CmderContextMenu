@@ -1,4 +1,4 @@
-SET CMDERPATH="%cd%"
+SET CMDERPATH=%cd%
 SET CMDERPATHREG=%CMDERPATH:\=\\%
 SET ADDREGFILE=%CMDERPATH%\cmder_set_ctx_menu.reg
 SET DELREGFILE=%CMDERPATH%\cmder_unset_ctx_menu.reg
