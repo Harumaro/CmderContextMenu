@@ -1,8 +1,8 @@
-SET CMDERPATH=%cd%
+SET CMDERPATH="%cd%"
 SET CMDERPATHREG=%CMDERPATH:\=\\%
 SET ADDREGFILE=%CMDERPATH%\cmder_set_ctx_menu.reg
 SET DELREGFILE=%CMDERPATH%\cmder_unset_ctx_menu.reg
-SET CMDERBAT=%CMDERPATH%\cmder.bat
+SET CMDERBAT=%CMDERPATH%\Cmder.bat
 
 type %ADDREGFILE%
 echo Windows Registry Editor Version 5.00 > %ADDREGFILE%
@@ -34,7 +34,7 @@ echo [-HKEY_CLASSES_ROOT\directory\shell\Cmder] >> %DELREGFILE%
     echo move /y %%FILENAME%% %%OLDNAME%%
     echo echo @cd /d %%1 ^>^> %%FILENAME%%
     echo echo cls ^>^> %%FILENAME%%
-    echo echo %%CMDERPATH%%"\Cmder.exe"
+    echo %%CMDERPATH%%\Cmder.exe
     echo timeout /t 3 /nobreak ^> NUL
     echo move /y %%OLDNAME%% %%FILENAME%%
 ) > %CMDERBAT%
