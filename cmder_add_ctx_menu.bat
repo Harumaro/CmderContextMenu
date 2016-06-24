@@ -1,5 +1,8 @@
-SET CMDERPATH=%cd%
+IF "%1" == "" SET CMDERPATH=%cd%
+ELSE SET CMDERPATH=%1
+
 SET CMDERPATHREG=%CMDERPATH:\=\\%
+SET INVISFILE=%CMDERPATH%\invis.vbs
 SET ADDREGFILE=%CMDERPATH%\cmder_set_ctx_menu.reg
 SET DELREGFILE=%CMDERPATH%\cmder_unset_ctx_menu.reg
 SET CMDERBAT=%CMDERPATH%\Cmder.bat
@@ -27,6 +30,9 @@ echo. >> %DELREGFILE%
 echo [-HKEY_CLASSES_ROOT\directory\background\shell\Cmder] >> %DELREGFILE%
 echo [-HKEY_CLASSES_ROOT\directory\shell\Cmder] >> %DELREGFILE%
 
+type %INVISFILE%
+echo CreateObject("Wscript.Shell")^.Run "" ^& WScript.Arguments(0) ^& "", 0, False > %INVISFILE%
+
 (
     echo SET CMDERPATH=%CMDERPATH%
     echo SET FILENAME=%%CMDERPATH%%\config\user-startup.cmd
@@ -40,3 +46,4 @@ echo [-HKEY_CLASSES_ROOT\directory\shell\Cmder] >> %DELREGFILE%
 ) > %CMDERBAT%
 
 regedit /s %ADDREGFILE%
+del /f %ADDREGFILE%
